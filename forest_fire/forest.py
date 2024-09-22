@@ -110,19 +110,14 @@ class forest_cl():
         scale = int(s.p/s.f)
         for iter in tqdm(range(iterations//scale)):
  
-            for _ in range(scale//2):
+            for _ in range(scale):
                 i = int(np.random.rand()*s.N)
                 if s.forest[i] == 0:
                     s.plant(i)
 
             i = int(np.random.rand()*s.N)
             if s.forest[i] == 1:
-                s.burn(i)      
-
-            for _ in range(scale//2):
-                i = int(np.random.rand()*s.N)
-                if s.forest[i] == 0:
-                    s.plant(i)       
+                s.burn(i)        
 
             if  iter%(10**5//scale)==0:
                 div = s.js_divergence(s.previous,s.distribution)
